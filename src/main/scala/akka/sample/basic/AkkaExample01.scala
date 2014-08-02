@@ -1,7 +1,7 @@
-package akka.sample
+package akka.sample.basic
 
-import actor.PrintActor
 import akka.actor.{Props, ActorSystem}
+import akka.sample.actor.PrintActor
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,6 +15,7 @@ object AkkaExample01 extends App {
   val actor = system.actorOf(Props[PrintActor], "hoge")
 
   actor ! "HelloWorld!"
+  actor ! 100
 
   system.shutdown
 }

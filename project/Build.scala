@@ -4,7 +4,7 @@ import Keys._
 object BuildSettings {
   val buildOrganization = "yagince"
   val buildVersion      = "0.0.1"
-  val buildScalaVersion = "2.10.0"
+  val buildScalaVersion = "2.11.1"
 
   val buildSettings = Defaults.defaultSettings ++ Seq (
     organization := buildOrganization,
@@ -15,11 +15,14 @@ object BuildSettings {
 
 object Resolvers {
   val typeSafe = "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
-  val otherResolvers = Seq(typeSafe)
+  val sprayIO = "spray" at "http://repo.spray.io/"
+  val otherResolvers = Seq(typeSafe, sprayIO)
 }
 
 object Dependencies {
-  val akkaCore = "com.typesafe.akka" %% "akka-actor" % "2.1.0"
+  val akkaCore = "com.typesafe.akka" %% "akka-actor" % "2.3.4"
+  val json4s = "org.json4s" %% "json4s-native" % "3.2.10"
+  val sprayJson = "io.spray" %%  "spray-json" % "1.2.6"
 }
 
 object AkkaPracticeBuild extends Build {
@@ -28,7 +31,9 @@ object AkkaPracticeBuild extends Build {
   import BuildSettings._
 
   val dependencies = Seq (
-    akkaCore
+    akkaCore,
+    json4s,
+    sprayJson
   )
   
   val project = Project (

@@ -1,8 +1,8 @@
-package akka.sample
+package akka.sample.basic
 
-import actor.{Doubled, DoubleActor}
 import akka.actor.{ActorSystem, Actor, Props}
 import akka.routing.RoundRobinRouter
+import akka.sample.actor.{Doubled, DoubleActor}
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,9 +15,9 @@ object AkkaExample02 extends App {
   val system = ActorSystem("sample")
   val actor = system.actorOf(Props[Master])
 
-  actor ! 100
+  (0 to 10).foreach(actor ! _)
 
-  Thread.sleep(500)
+  Thread.sleep(100)
   system.shutdown
 }
 

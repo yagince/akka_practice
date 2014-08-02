@@ -11,6 +11,12 @@ import akka.actor.Actor
  */
 class PrintActor extends Actor {
   def receive = {
-    case x => println(x)
+    case x:Int => {
+      println(x)
+      self ! x.toString
+    }
+    case x:String => {
+      println("String: %s".format(x))
+    }
   }
 }
